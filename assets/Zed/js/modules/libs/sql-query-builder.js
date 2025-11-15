@@ -143,11 +143,7 @@ SqlQueryBuilder.prototype.toggleSubmitButton = function (isDisabled) {
 };
 
 SqlQueryBuilder.prototype.toggleErrorState = function (isError) {
-    if (window.spryker?.isBootstrapVersionLatest) {
-        this.tabsContainer.find('[data-bs-target="tab-content-assign-products"]').toggleClass('error', isError);
-    } else {
-        this.tabsContainer.find('[data-tab-content-id="tab-content-assign-products"]').toggleClass('error', isError);
-    }
+    this.tabsContainer.find('[data-bs-target="tab-content-assign-products"]').toggleClass('error', isError);
 
     this.flashMessages.html(
         isError ? '<div class="alert alert-danger">' + this.builder.attr('data-error-message') + '</div>' : '',

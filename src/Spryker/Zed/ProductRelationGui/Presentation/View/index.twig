@@ -17,23 +17,23 @@
     {% embed '@Gui/Partials/widget.twig' with { widget_title: 'General' | trans }  %}
         {% block widget_content %}
             <div class="row form-group">
-                <div class="col-xs-2"><b>{{ 'Product relation key' | trans }}</b></div>
-                <div class="col-xs-10">{{ productRelation.productRelationKey }}</div>
+                <div class="col-2"><b>{{ 'Product relation key' | trans }}</b></div>
+                <div class="col-10">{{ productRelation.productRelationKey }}</div>
             </div>
 
             <div class="row form-group">
-                <div class="col-xs-2"><b>{{ 'Relation type' | trans }}</b></div>
-                <div class="col-xs-10">{{ productRelation.productRelationType.key }}</div>
+                <div class="col-2"><b>{{ 'Relation type' | trans }}</b></div>
+                <div class="col-10">{{ productRelation.productRelationType.key }}</div>
             </div>
 
             <div class="row form-group">
-                <div class="col-xs-2"><b>{{ 'Update regularly' | trans }}</b></div>
-                <div class="col-xs-10">{{ (productRelation.isRebuildScheduled ? 'Yes' : 'No') | trans }}</div>
+                <div class="col-2"><b>{{ 'Update regularly' | trans }}</b></div>
+                <div class="col-10">{{ (productRelation.isRebuildScheduled ? 'Yes' : 'No') | trans }}</div>
             </div>
 
             <div class="row form-group">
-                <div class="col-xs-2"><b>{{ 'Status' | trans }}</b></div>
-                <div class="col-xs-10">
+                <div class="col-2"><b>{{ 'Status' | trans }}</b></div>
+                <div class="col-10">
                     {% if productRelation.isActive %}
                         <span class="label label-info">{{ 'Active'| trans }}</span>
                     {% else %}
@@ -71,8 +71,8 @@
     {% embed '@Gui/Partials/widget.twig' with { widget_title: 'Store relation' | trans } %}
         {% block widget_content %}
             <div class="row form-group">
-                <div class="col-xs-2"><b>{{ 'Stores' | trans }}</b></div>
-                <div class="col-xs-10">
+                <div class="col-2"><b>{{ 'Stores' | trans }}</b></div>
+                <div class="col-10">
                     {% set stores = productRelation.storeRelation.stores %}
                     {% if stores | length > 0 %}
                         {% for store in stores %}
