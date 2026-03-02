@@ -69,9 +69,6 @@ class ProductRelationTableTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     protected function setUp(): void
     {
         parent::setUp();
@@ -80,9 +77,6 @@ class ProductRelationTableTest extends Unit
         $this->registerFormFactoryServiceMock();
     }
 
-    /**
-     * @return void
-     */
     public function testFetchDataShouldReturnProductRelations(): void
     {
         // Arrange
@@ -110,9 +104,6 @@ class ProductRelationTableTest extends Unit
         $this->assertContains($productRelation2->getIdProductRelation(), $resultProductRelationIds);
     }
 
-    /**
-     * @return \SprykerTest\Zed\ProductRelationGui\Communication\Table\ProductRelationTableMock
-     */
     protected function getProductRelationTableMock(): ProductRelationTableMock
     {
         $productRelationQuery = new SpyProductRelationQuery();
@@ -160,18 +151,12 @@ class ProductRelationTableTest extends Unit
         return $productRelationGuiToLocaleFacadeMock;
     }
 
-    /**
-     * @return void
-     */
     protected function registerTwigServiceMock(): void
     {
         $this->tester->getContainer()
             ->set(static::SERVICE_TWIG, $this->getTwigMock());
     }
 
-    /**
-     * @return void
-     */
     protected function registerFormFactoryServiceMock(): void
     {
         $this->tester->getContainer()
@@ -196,9 +181,6 @@ class ProductRelationTableTest extends Unit
         return $twigMock;
     }
 
-    /**
-     * @return \Twig\Loader\LoaderInterface
-     */
     protected function getChainLoader(): LoaderInterface
     {
         return new ChainLoader();

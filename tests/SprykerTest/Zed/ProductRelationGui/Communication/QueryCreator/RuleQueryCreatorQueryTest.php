@@ -38,9 +38,6 @@ class RuleQueryCreatorQueryTest extends Unit
      */
     protected $tester;
 
-    /**
-     * @return void
-     */
     public function testPrepareQueryCreatesQueryThatReturnsCorrectData(): void
     {
         // Arrange

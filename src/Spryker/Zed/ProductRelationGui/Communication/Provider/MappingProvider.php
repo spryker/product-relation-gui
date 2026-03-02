@@ -26,9 +26,6 @@ class MappingProvider implements MappingProviderInterface
      */
     protected $productAttributeKeyQuery;
 
-    /**
-     * @param \Orm\Zed\Product\Persistence\SpyProductAttributeKeyQuery $productAttributeKeyQuery
-     */
     public function __construct(SpyProductAttributeKeyQuery $productAttributeKeyQuery)
     {
         $this->productAttributeKeyQuery = $productAttributeKeyQuery;

@@ -50,11 +50,6 @@ class ProductRelationKeyUniqueConstraintValidator extends ConstraintValidator
             ->addViolation();
     }
 
-    /**
-     * @param string $productRelationKey
-     *
-     * @return \Generated\Shared\Transfer\ProductRelationCriteriaTransfer
-     */
     protected function createProductRelationCriteriaTransfer(
         string $productRelationKey
     ): ProductRelationCriteriaTransfer {

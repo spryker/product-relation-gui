@@ -28,9 +28,6 @@ class ListController extends AbstractController
         ];
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
     public function tableAction(): JsonResponse
     {
         $productRelationTable = $this->getFactory()

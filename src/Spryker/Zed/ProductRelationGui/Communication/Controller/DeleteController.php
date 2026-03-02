@@ -53,12 +53,6 @@ class DeleteController extends AbstractController
         ]);
     }
 
-    /**
-     * @param int $idProductRelation
-     * @param string $redirectUrl
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function handleSubmitForm(
         int $idProductRelation,
         string $redirectUrl
@@ -80,11 +74,6 @@ class DeleteController extends AbstractController
         return $this->redirectResponse($redirectUrl);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationResponseTransfer $productRelationResponseTransfer
-     *
-     * @return void
-     */
     protected function processErrorMessages(
         ProductRelationResponseTransfer $productRelationResponseTransfer
     ): void {

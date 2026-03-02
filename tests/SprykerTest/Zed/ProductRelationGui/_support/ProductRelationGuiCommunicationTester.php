@@ -30,9 +30,6 @@ class ProductRelationGuiCommunicationTester extends Actor
 {
     use _generated\ProductRelationGuiCommunicationTesterActions;
 
-    /**
-     * @return \Generated\Shared\Transfer\LocaleTransfer
-     */
     public function getCurrentLocale(): LocaleTransfer
     {
         return $this->getLocator()->locale()->facade()->getCurrentLocale();

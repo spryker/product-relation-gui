@@ -132,12 +132,6 @@ class ProductRelationTable extends AbstractTable
      */
     protected $productRelationQuery;
 
-    /**
-     * @param \Orm\Zed\ProductRelation\Persistence\SpyProductRelationQuery $productRelationQuery
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductFacadeInterface $productFacade
-     * @param \Spryker\Zed\ProductRelationGui\ProductRelationGuiConfig $productRelationGuiConfig
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToLocaleFacadeInterface $localeFacade
-     */
     public function __construct(
         SpyProductRelationQuery $productRelationQuery,
         ProductRelationGuiToProductFacadeInterface $productFacade,
@@ -152,11 +146,6 @@ class ProductRelationTable extends AbstractTable
         $this->setTableIdentifier('product-relation-table');
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     protected function configure(TableConfiguration $config): TableConfiguration
     {
         $this->setHeaders($config);
@@ -168,11 +157,6 @@ class ProductRelationTable extends AbstractTable
         return $config;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setRawColumns(TableConfiguration $config): void
     {
         $config->setRawColumns([
@@ -182,11 +166,6 @@ class ProductRelationTable extends AbstractTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setHeaders(TableConfiguration $config): void
     {
         $config->setHeader([
@@ -202,11 +181,6 @@ class ProductRelationTable extends AbstractTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setSortableFields(TableConfiguration $config): void
     {
         $config->setSortable([
@@ -220,11 +194,6 @@ class ProductRelationTable extends AbstractTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setSearchableFields(TableConfiguration $config): void
     {
         $config->setSearchable([
@@ -235,11 +204,6 @@ class ProductRelationTable extends AbstractTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setDefaultSortField(TableConfiguration $config): void
     {
         $config->setDefaultSortField(
@@ -248,11 +212,6 @@ class ProductRelationTable extends AbstractTable
         );
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return array
-     */
     protected function prepareData(TableConfiguration $config): array
     {
         $localeTransfer = $this->localeFacade->getCurrentLocale();
@@ -291,11 +250,6 @@ class ProductRelationTable extends AbstractTable
             ->groupByIdProductRelation();
     }
 
-    /**
-     * @param \Orm\Zed\ProductRelation\Persistence\SpyProductRelation $productRelationEntity
-     *
-     * @return array
-     */
     protected function mapResults(SpyProductRelation $productRelationEntity): array
     {
         return [
@@ -329,11 +283,6 @@ class ProductRelationTable extends AbstractTable
         return $buttons;
     }
 
-    /**
-     * @param int $idProductRelation
-     *
-     * @return string
-     */
     protected function createViewButton(int $idProductRelation): string
     {
         return $this->generateViewButton(
@@ -350,11 +299,6 @@ class ProductRelationTable extends AbstractTable
         );
     }
 
-    /**
-     * @param \Orm\Zed\ProductRelation\Persistence\SpyProductRelation $productRelationEntity
-     *
-     * @return string
-     */
     protected function buildActiveLabel(SpyProductRelation $productRelationEntity): string
     {
         if (!$productRelationEntity->getIsActive()) {
@@ -364,11 +308,6 @@ class ProductRelationTable extends AbstractTable
         return $this->generateLabel('Active', 'label-primary');
     }
 
-    /**
-     * @param int $idProductRelation
-     *
-     * @return string
-     */
     protected function createEditButton(int $idProductRelation): string
     {
         return $this->generateEditButton(
@@ -382,11 +321,6 @@ class ProductRelationTable extends AbstractTable
         );
     }
 
-    /**
-     * @param int $idProductRelation
-     *
-     * @return string
-     */
     protected function createDeleteButton(int $idProductRelation): string
     {
         return $this->generateRemoveButton(
@@ -398,11 +332,6 @@ class ProductRelationTable extends AbstractTable
         );
     }
 
-    /**
-     * @param \Orm\Zed\ProductRelation\Persistence\SpyProductRelation $productRelationEntity
-     *
-     * @return string
-     */
     protected function createRelationStatusChangeButton(SpyProductRelation $productRelationEntity): string
     {
         if ($productRelationEntity->getIsActive()) {
@@ -427,11 +356,6 @@ class ProductRelationTable extends AbstractTable
         );
     }
 
-    /**
-     * @param \Orm\Zed\ProductRelation\Persistence\SpyProductRelation $productRelationEntity
-     *
-     * @return string
-     */
     protected function getStoreNames(SpyProductRelation $productRelationEntity): string
     {
         $storeNames = [];

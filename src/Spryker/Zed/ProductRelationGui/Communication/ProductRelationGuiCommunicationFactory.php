@@ -56,17 +56,11 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         return new RuleQuerySetTransformer($this->getUtilEncodingService());
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Communication\Form\DataProvider\ProductRelationTypeDataProvider
-     */
     public function createProductRelationFormTypeDataProvider(): ProductRelationTypeDataProvider
     {
         return new ProductRelationTypeDataProvider($this->getProductRelationFacade());
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     public function createUniqueRelationTypeForProductAbstractAndQuerySetConstraint(): Constraint
     {
         return new UniqueRelationTypeForProductAbstractAndQuerySet([
@@ -77,9 +71,6 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         ]);
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     public function createProductRelationKeyUniqueConstraint(): Constraint
     {
         return new ProductRelationKeyUniqueConstraint([
@@ -87,9 +78,6 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         ]);
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     public function createUniqueProductRelationByProductAbstractAndRelationTypeAndStoresConstraint(): Constraint
     {
         return new UniqueProductRelationByProductAbstractAndRelationTypeAndStoresConstraint([
@@ -97,9 +85,6 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         ]);
     }
 
-    /**
-     * @return \Symfony\Component\Validator\Constraint
-     */
     public function createProductAbstractNotBlankConstraint(): Constraint
     {
         return new ProductAbstractNotBlankConstraint();
@@ -122,27 +107,16 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         );
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createProductRelationDeleteForm(): FormInterface
     {
         return $this->getFormFactory()->create(ProductRelationDeleteForm::class);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Communication\Tabs\ProductRelationTabs
-     */
     public function createProductRelationTabs(): ProductRelationTabs
     {
         return new ProductRelationTabs();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return \Spryker\Zed\ProductRelationGui\Communication\Table\ProductRuleTable
-     */
     public function createProductRuleTable(ProductRelationTransfer $productRelationTransfer): ProductRuleTable
     {
         return new ProductRuleTable(
@@ -155,9 +129,6 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Communication\Table\ProductRelationTable
-     */
     public function createProductRelationTable(): ProductRelationTable
     {
         return new ProductRelationTable(
@@ -168,11 +139,6 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         );
     }
 
-    /**
-     * @param int|null $idProductRelation
-     *
-     * @return \Spryker\Zed\ProductRelationGui\Communication\Table\ProductTable
-     */
     public function createProductTable(?int $idProductRelation = null): ProductTable
     {
         return new ProductTable(
@@ -183,25 +149,16 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         );
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Communication\Provider\MappingProviderInterface
-     */
     public function createMappingProvider(): MappingProviderInterface
     {
         return new MappingProvider($this->getProductAttributeKeyPropelQuery());
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Communication\Provider\FilterProviderInterface
-     */
     public function createFilterProvider(): FilterProviderInterface
     {
         return new FilterProvider($this->getProductAttributeFacade());
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Communication\QueryCreator\RuleQueryCreatorInterface
-     */
     public function createRuleQueryCreator(): RuleQueryCreatorInterface
     {
         return new RuleQueryCreator(
@@ -212,89 +169,56 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
         );
     }
 
-    /**
-     * @return \Symfony\Component\Form\FormInterface
-     */
     public function createProductRelationToggleIsActiveForm(): FormInterface
     {
         return $this->getFormFactory()->create(ProductRelationToggleIsActiveForm::class);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductRelationFacadeInterface
-     */
     public function getProductRelationFacade(): ProductRelationGuiToProductRelationFacadeInterface
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::FACADE_PRODUCT_RELATION);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Dependency\Service\ProductRelationGuiToUtilEncodingServiceInterface
-     */
     public function getUtilEncodingService(): ProductRelationGuiToUtilEncodingServiceInterface
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::SERVICE_UTIL_ENCODING);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductFacadeInterface
-     */
     public function getProductFacade(): ProductRelationGuiToProductFacadeInterface
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::FACADE_PRODUCT);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToLocaleFacadeInterface
-     */
     public function getLocaleFacade(): ProductRelationGuiToLocaleFacadeInterface
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::FACADE_LOCALE);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Dependency\QueryContainer\ProductRelationGuiToPropelQueryBuilderQueryContainerInterface
-     */
     public function getPropelQueryBuilderQueryContainer(): ProductRelationGuiToPropelQueryBuilderQueryContainerInterface
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::QUERY_CONTAINER_PROPEL_QUERY_BUILDER);
     }
 
-    /**
-     * @return \Orm\Zed\ProductRelation\Persistence\SpyProductRelationQuery
-     */
     public function getProductRelationPropelQuery(): SpyProductRelationQuery
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::PROPEL_QUERY_PRODUCT_RELATION);
     }
 
-    /**
-     * @return \Orm\Zed\Product\Persistence\SpyProductAbstractQuery
-     */
     public function getProductAbstractPropelQuery(): SpyProductAbstractQuery
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::PROPEL_QUERY_PRODUCT_ABSTRACT);
     }
 
-    /**
-     * @return \Orm\Zed\Product\Persistence\SpyProductAttributeKeyQuery
-     */
     public function getProductAttributeKeyPropelQuery(): SpyProductAttributeKeyQuery
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::PROPEL_QUERY_PRODUCT_ATTRIBUTE_KEY);
     }
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductAttributeFacadeInterface
-     */
     public function getProductAttributeFacade(): ProductRelationGuiToProductAttributeFacadeInterface
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::FACADE_PRODUCT_ATTRIBUTE);
     }
 
-    /**
-     * @return \Spryker\Zed\Kernel\Communication\Form\FormTypeInterface
-     */
     public function getStoreRelationFormTypePlugin(): FormTypeInterface
     {
         return $this->getProvidedDependency(ProductRelationGuiDependencyProvider::PLUGIN_STORE_RELATION_FORM_TYPE);

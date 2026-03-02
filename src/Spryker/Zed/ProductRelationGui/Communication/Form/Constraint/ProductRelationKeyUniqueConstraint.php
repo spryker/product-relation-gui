@@ -27,17 +27,11 @@ class ProductRelationKeyUniqueConstraint extends Constraint
      */
     protected $productRelationFacade;
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductRelationFacadeInterface
-     */
     public function getProductRelationFacade(): ProductRelationGuiToProductRelationFacadeInterface
     {
         return $this->productRelationFacade;
     }
 
-    /**
-     * @return string
-     */
     public function getMessage(): string
     {
         return $this->message;

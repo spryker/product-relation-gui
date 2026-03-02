@@ -15,9 +15,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class QueryBuilderController extends AbstractController
 {
-    /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
     public function loadFilterSetAction(): JsonResponse
     {
         $filters = $this->getFactory()

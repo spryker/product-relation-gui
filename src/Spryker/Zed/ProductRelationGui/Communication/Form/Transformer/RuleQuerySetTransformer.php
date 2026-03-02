@@ -21,9 +21,6 @@ class RuleQuerySetTransformer implements DataTransformerInterface
      */
     protected $utilEncodingService;
 
-    /**
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Service\ProductRelationGuiToUtilEncodingServiceInterface $utilEncodingService
-     */
     public function __construct(ProductRelationGuiToUtilEncodingServiceInterface $utilEncodingService)
     {
         $this->utilEncodingService = $utilEncodingService;

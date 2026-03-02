@@ -35,17 +35,11 @@ class FilterProvider implements FilterProviderInterface
      */
     protected $productAttributeFacade;
 
-    /**
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductAttributeFacadeInterface $productAttributeFacade
-     */
     public function __construct(ProductRelationGuiToProductAttributeFacadeInterface $productAttributeFacade)
     {
         $this->productAttributeFacade = $productAttributeFacade;
     }
 
-    /**
-     * @return array
-     */
     public function getFilters(): array
     {
         $filters = $this->buildProductFilters();
@@ -55,9 +49,6 @@ class FilterProvider implements FilterProviderInterface
         return $filters;
     }
 
-    /**
-     * @return array
-     */
     protected function buildCategoryFilters(): array
     {
         return [
@@ -72,9 +63,6 @@ class FilterProvider implements FilterProviderInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function buildProductFilters(): array
     {
         return [
@@ -130,9 +118,6 @@ class FilterProvider implements FilterProviderInterface
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function buildProductAttributeFilters(): array
     {
         $productManagementAttributeTransfers = $this->productAttributeFacade->getProductAttributeCollection();
@@ -153,11 +138,6 @@ class FilterProvider implements FilterProviderInterface
         return $filters;
     }
 
-    /**
-     * @param string $persistedAttributeKey
-     *
-     * @return string
-     */
     protected function buildAttributeKey(string $persistedAttributeKey): string
     {
         return sprintf(static::PATTERN_ATTRIBUTE_KEY, $persistedAttributeKey);

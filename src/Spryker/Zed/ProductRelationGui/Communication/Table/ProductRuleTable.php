@@ -104,14 +104,6 @@ class ProductRuleTable extends AbstractProductTable
      */
     protected $ruleQueryCreator;
 
-    /**
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductFacadeInterface $productFacade
-     * @param \Spryker\Zed\ProductRelationGui\Communication\QueryCreator\RuleQueryCreatorInterface $ruleQueryCreator
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Service\ProductRelationGuiToUtilEncodingServiceInterface $utilEncodingService
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToLocaleFacadeInterface $localeFacade
-     * @param \Spryker\Zed\ProductRelationGui\ProductRelationGuiConfig $productRelationGuiConfig
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     */
     public function __construct(
         ProductRelationGuiToProductFacadeInterface $productFacade,
         RuleQueryCreatorInterface $ruleQueryCreator,
@@ -130,11 +122,6 @@ class ProductRuleTable extends AbstractProductTable
         $this->productRelationTransfer = $productRelationTransfer;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     protected function configure(TableConfiguration $config): TableConfiguration
     {
         $this->setHeaders($config);
@@ -147,11 +134,6 @@ class ProductRuleTable extends AbstractProductTable
         return $config;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return array
-     */
     protected function prepareData(TableConfiguration $config): array
     {
         if (!$this->showResultsWithoutCriteria && !$this->productRelationTransfer->getQuerySet()->getRules()->getArrayCopy()) {
@@ -170,9 +152,6 @@ class ProductRuleTable extends AbstractProductTable
         return $results;
     }
 
-    /**
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     protected function getQuery(): ModelCriteria
     {
         return $this->ruleQueryCreator
@@ -191,11 +170,6 @@ class ProductRuleTable extends AbstractProductTable
             )->setFormatter(new SimpleArrayFormatter());
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function addRawColumns(TableConfiguration $config): void
     {
         $config->addRawColumn(static::COL_ACTION)
@@ -218,11 +192,6 @@ class ProductRuleTable extends AbstractProductTable
         ];
     }
 
-    /**
-     * @param array $product
-     *
-     * @return string|null
-     */
     protected function getProductUrl(array $product): ?string
     {
         $productAbstract = (new ProductAbstractTransfer())
@@ -253,11 +222,6 @@ class ProductRuleTable extends AbstractProductTable
         return $this->getRowData($data);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return string
-     */
     protected function getDefaultUrl(ProductRelationTransfer $productRelationTransfer): string
     {
         $json = $this->utilEncodingService->encodeJson(
@@ -271,11 +235,6 @@ class ProductRuleTable extends AbstractProductTable
         );
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setHeaders(TableConfiguration $config): void
     {
         $config->setHeader([
@@ -287,11 +246,6 @@ class ProductRuleTable extends AbstractProductTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setSearchable(TableConfiguration $config): void
     {
         $config->setSearchable([
@@ -301,11 +255,6 @@ class ProductRuleTable extends AbstractProductTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setSortable(TableConfiguration $config): void
     {
         $config->setSortable([

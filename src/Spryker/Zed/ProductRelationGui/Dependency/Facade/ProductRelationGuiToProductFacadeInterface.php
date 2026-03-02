@@ -12,11 +12,6 @@ use Generated\Shared\Transfer\ProductUrlTransfer;
 
 interface ProductRelationGuiToProductFacadeInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductUrlTransfer
-     */
     public function getProductUrl(ProductAbstractTransfer $productAbstractTransfer): ProductUrlTransfer;
 
     /**

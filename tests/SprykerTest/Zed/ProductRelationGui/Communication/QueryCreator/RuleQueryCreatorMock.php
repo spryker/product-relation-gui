@@ -13,11 +13,6 @@ use Spryker\Zed\ProductRelationGui\Communication\QueryCreator\RuleQueryCreator;
 
 class RuleQueryCreatorMock extends RuleQueryCreator
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     public function createQuery(ProductRelationTransfer $productRelationTransfer): ModelCriteria
     {
         return $this->prepareQuery($productRelationTransfer->getQueryDataProvider());

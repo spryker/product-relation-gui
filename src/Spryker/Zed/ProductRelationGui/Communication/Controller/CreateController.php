@@ -76,11 +76,6 @@ class CreateController extends BaseProductRelationController
         ];
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $productRelationForm
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function handleSubmitForm(FormInterface $productRelationForm): RedirectResponse
     {
         $productRelationResponseTransfer = $this->getFactory()
@@ -108,9 +103,6 @@ class CreateController extends BaseProductRelationController
         return $this->redirectResponse($editProductRelationUrl);
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
     public function tableAction(): JsonResponse
     {
         $productTable = $this->getFactory()->createProductTable();
@@ -120,11 +112,6 @@ class CreateController extends BaseProductRelationController
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationResponseTransfer $productRelationResponseTransfer
-     *
-     * @return void
-     */
     protected function processErrorMessages(
         ProductRelationResponseTransfer $productRelationResponseTransfer
     ): void {

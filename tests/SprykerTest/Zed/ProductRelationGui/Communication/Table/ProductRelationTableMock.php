@@ -12,9 +12,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ProductRelationTableMock extends ProductRelationTable
 {
-    /**
-     * @return array
-     */
     public function fetchData(): array
     {
         return $this->init()->prepareData($this->config);

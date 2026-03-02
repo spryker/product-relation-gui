@@ -127,9 +127,6 @@ class EditController extends BaseProductRelationController
         ];
     }
 
-    /**
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
     public function tableAction(): JsonResponse
     {
         $productTable = $this->getFactory()->createProductTable();
@@ -139,21 +136,11 @@ class EditController extends BaseProductRelationController
         );
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     public function toggleIsActiveAction(Request $request): RedirectResponse
     {
         return $this->executeToggleIsActiveAction($request);
     }
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function executeToggleIsActiveAction(Request $request): RedirectResponse
     {
         $redirectUrl = (string)$request->query->get(static::URL_PARAM_REDIRECT_URL);
@@ -198,11 +185,6 @@ class EditController extends BaseProductRelationController
         return $this->redirectResponse($redirectUrl);
     }
 
-    /**
-     * @param int $idProductAbstract
-     *
-     * @return array
-     */
     protected function getProductAbstractData(int $idProductAbstract): array
     {
         $localeTransfer = $this->getFactory()
@@ -217,12 +199,6 @@ class EditController extends BaseProductRelationController
             );
     }
 
-    /**
-     * @param \Symfony\Component\Form\FormInterface $productRelationForm
-     * @param int $idProductRelation
-     *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
     protected function handleSubmitForm(
         FormInterface $productRelationForm,
         int $idProductRelation
@@ -243,11 +219,6 @@ class EditController extends BaseProductRelationController
         return $this->redirectResponse($editProductRelationUrl);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationResponseTransfer $productRelationResponseTransfer
-     *
-     * @return void
-     */
     protected function processErrorMessages(
         ProductRelationResponseTransfer $productRelationResponseTransfer
     ): void {

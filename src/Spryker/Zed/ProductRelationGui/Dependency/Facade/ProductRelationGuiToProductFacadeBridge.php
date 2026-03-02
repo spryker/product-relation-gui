@@ -25,11 +25,6 @@ class ProductRelationGuiToProductFacadeBridge implements ProductRelationGuiToPro
         $this->productFacade = $productFacade;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductAbstractTransfer $productAbstractTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductUrlTransfer
-     */
     public function getProductUrl(ProductAbstractTransfer $productAbstractTransfer): ProductUrlTransfer
     {
         return $this->productFacade->getProductUrl($productAbstractTransfer);

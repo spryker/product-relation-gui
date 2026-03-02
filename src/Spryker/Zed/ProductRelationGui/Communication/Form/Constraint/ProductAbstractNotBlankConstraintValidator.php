@@ -42,19 +42,11 @@ class ProductAbstractNotBlankConstraintValidator extends ConstraintValidator
         }
     }
 
-    /**
-     * @param int|null $idProductAbstract
-     *
-     * @return bool
-     */
     protected function isIdProductAbstractExists(?int $idProductAbstract): bool
     {
         return $idProductAbstract !== null;
     }
 
-    /**
-     * @return void
-     */
     protected function createViolationMessage(): void
     {
         $this->context

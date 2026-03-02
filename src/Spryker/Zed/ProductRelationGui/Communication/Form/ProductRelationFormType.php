@@ -99,11 +99,6 @@ class ProductRelationFormType extends AbstractType
             ->addStoreRelationForm($builder);
     }
 
-    /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
-     *
-     * @return void
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setRequired(static::OPTION_RELATION_CHOICES);
@@ -260,9 +255,6 @@ class ProductRelationFormType extends AbstractType
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getBlockPrefix(): string
     {
         return 'product_relation';

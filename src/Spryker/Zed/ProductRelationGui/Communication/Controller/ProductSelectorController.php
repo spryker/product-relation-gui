@@ -21,11 +21,6 @@ class ProductSelectorController extends AbstractController
      */
     public const URL_PARAM_ID_PRODUCT_ABSTRACT = 'id-product-abstract';
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
     public function indexAction(Request $request): JsonResponse
     {
         $localeTransfer = $this->getFactory()

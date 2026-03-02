@@ -36,9 +36,6 @@ class ProductRelationTypeDataProvider
      */
     protected $productRelationFacade;
 
-    /**
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductRelationFacadeInterface $productRelationFacade
-     */
     public function __construct(ProductRelationGuiToProductRelationFacadeInterface $productRelationFacade)
     {
         $this->productRelationFacade = $productRelationFacade;
@@ -58,9 +55,6 @@ class ProductRelationTypeDataProvider
         ];
     }
 
-    /**
-     * @return array
-     */
     protected function buildProductRelationTypeChoiceList(): array
     {
         $productRelationTypeList = [
@@ -76,11 +70,6 @@ class ProductRelationTypeDataProvider
         return $productRelationChoiceTypeList;
     }
 
-    /**
-     * @param int|null $idProductRelation
-     *
-     * @return \Generated\Shared\Transfer\ProductRelationTransfer
-     */
     public function getData(?int $idProductRelation = null): ProductRelationTransfer
     {
         if ($idProductRelation === null) {
@@ -97,9 +86,6 @@ class ProductRelationTypeDataProvider
         return $productRelationTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\ProductRelationTransfer
-     */
     protected function createProductRelationTransfer(): ProductRelationTransfer
     {
         $productRelationTransfer = new ProductRelationTransfer();

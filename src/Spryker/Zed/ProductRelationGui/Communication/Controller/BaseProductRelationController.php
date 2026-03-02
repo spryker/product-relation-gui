@@ -23,11 +23,6 @@ class BaseProductRelationController extends AbstractController
      */
     protected const URL_PARAM_DATA = 'data';
 
-    /**
-     * @param \Symfony\Component\HttpFoundation\Request $request
-     *
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     */
     public function ruleQueryTableAction(Request $request): JsonResponse
     {
         $ruleSetJson = $request->get(static::URL_PARAM_DATA);
@@ -45,11 +40,6 @@ class BaseProductRelationController extends AbstractController
         );
     }
 
-    /**
-     * @param array $ruleSet
-     *
-     * @return \Generated\Shared\Transfer\ProductRelationTransfer
-     */
     protected function createProductRelationTransfer(array $ruleSet): ProductRelationTransfer
     {
         $productRelationTransfer = new ProductRelationTransfer();

@@ -12,10 +12,5 @@ use Propel\Runtime\ActiveQuery\ModelCriteria;
 
 interface RuleQueryCreatorInterface
 {
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     public function createQuery(ProductRelationTransfer $productRelationTransfer): ModelCriteria;
 }

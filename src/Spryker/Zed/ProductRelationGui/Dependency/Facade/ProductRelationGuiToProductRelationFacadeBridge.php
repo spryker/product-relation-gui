@@ -36,62 +36,31 @@ class ProductRelationGuiToProductRelationFacadeBridge implements ProductRelation
         return $this->productRelationFacade->findProductRelationById($idProductRelation);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationCriteriaTransfer $productRelationCriteriaTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductRelationTransfer|null
-     */
     public function findProductRelationByCriteria(ProductRelationCriteriaTransfer $productRelationCriteriaTransfer): ?ProductRelationTransfer
     {
         return $this->productRelationFacade->findProductRelationByCriteria($productRelationCriteriaTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductRelationResponseTransfer
-     */
     public function createProductRelation(ProductRelationTransfer $productRelationTransfer): ProductRelationResponseTransfer
     {
         return $this->productRelationFacade->createProductRelation($productRelationTransfer);
     }
 
-    /**
-     * @param int $idProductRelation
-     *
-     * @return \Generated\Shared\Transfer\ProductRelationResponseTransfer
-     */
     public function deleteProductRelation(int $idProductRelation): ProductRelationResponseTransfer
     {
         return $this->productRelationFacade->deleteProductRelation($idProductRelation);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductRelationResponseTransfer
-     */
     public function updateProductRelation(ProductRelationTransfer $productRelationTransfer): ProductRelationResponseTransfer
     {
         return $this->productRelationFacade->updateProductRelation($productRelationTransfer);
     }
 
-    /**
-     * @param int $idProductAbstract
-     * @param int $idLocale
-     *
-     * @return array
-     */
     public function getProductAbstractDataById(int $idProductAbstract, int $idLocale): array
     {
         return $this->productRelationFacade->getProductAbstractDataById($idProductAbstract, $idLocale);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationCriteriaTransfer $productRelationCriteriaTransfer
-     *
-     * @return array
-     */
     public function getStoresByProductRelationCriteria(ProductRelationCriteriaTransfer $productRelationCriteriaTransfer): array
     {
         return $this->productRelationFacade->getStoresByProductRelationCriteria($productRelationCriteriaTransfer);

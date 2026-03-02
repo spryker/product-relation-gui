@@ -56,12 +56,6 @@ class RuleQueryCreator implements RuleQueryCreatorInterface
      */
     protected $propelQueryBuilderQueryContainer;
 
-    /**
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToLocaleFacadeInterface $localeFacade
-     * @param \Orm\Zed\Product\Persistence\SpyProductAbstractQuery $productAbstractQuery
-     * @param \Spryker\Zed\ProductRelationGui\Communication\Provider\MappingProviderInterface $mappingProvider
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\QueryContainer\ProductRelationGuiToPropelQueryBuilderQueryContainerInterface $propelQueryBuilderQueryContainer
-     */
     public function __construct(
         ProductRelationGuiToLocaleFacadeInterface $localeFacade,
         SpyProductAbstractQuery $productAbstractQuery,
@@ -74,11 +68,6 @@ class RuleQueryCreator implements RuleQueryCreatorInterface
         $this->propelQueryBuilderQueryContainer = $propelQueryBuilderQueryContainer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return \Propel\Runtime\ActiveQuery\ModelCriteria
-     */
     public function createQuery(ProductRelationTransfer $productRelationTransfer): ModelCriteria
     {
         $ruleQueryTransfer = $this->mapRuleQueryTransfer($productRelationTransfer);
@@ -174,11 +163,6 @@ class RuleQueryCreator implements RuleQueryCreatorInterface
         return $query->filterByIdProductAbstract($dataProviderTransfer->getIdProductAbstract());
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return \Generated\Shared\Transfer\PropelQueryBuilderCriteriaTransfer
-     */
     protected function mapRuleQueryTransfer(ProductRelationTransfer $productRelationTransfer): PropelQueryBuilderCriteriaTransfer
     {
         $propelQueryBuilderCriteriaTransfer = new PropelQueryBuilderCriteriaTransfer();

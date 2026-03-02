@@ -80,11 +80,6 @@ class ViewController extends BaseProductRelationController
         );
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductRelationResponseTransfer $productRelationResponseTransfer
-     *
-     * @return void
-     */
     protected function processErrorMessages(
         ProductRelationResponseTransfer $productRelationResponseTransfer
     ): void {

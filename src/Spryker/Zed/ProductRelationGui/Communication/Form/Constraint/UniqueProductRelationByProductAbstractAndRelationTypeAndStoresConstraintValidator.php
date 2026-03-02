@@ -52,12 +52,6 @@ class UniqueProductRelationByProductAbstractAndRelationTypeAndStoresConstraintVa
         $this->checkDuplicatedStores($constraint, $value);
     }
 
-    /**
-     * @param \Spryker\Zed\ProductRelationGui\Communication\Form\Constraint\UniqueProductRelationByProductAbstractAndRelationTypeAndStoresConstraint $uniqueProductRelationByProductAbstractAndRelationTypeAndStoresConstraint
-     * @param \Generated\Shared\Transfer\ProductRelationTransfer $productRelationTransfer
-     *
-     * @return void
-     */
     protected function checkDuplicatedStores(
         UniqueProductRelationByProductAbstractAndRelationTypeAndStoresConstraint $uniqueProductRelationByProductAbstractAndRelationTypeAndStoresConstraint,
         ProductRelationTransfer $productRelationTransfer

@@ -22,17 +22,11 @@ class UniqueProductRelationByProductAbstractAndRelationTypeAndStoresConstraint e
      */
     protected $productRelationFacade;
 
-    /**
-     * @return \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductRelationFacadeInterface
-     */
     public function getProductRelationFacade(): ProductRelationGuiToProductRelationFacadeInterface
     {
         return $this->productRelationFacade;
     }
 
-    /**
-     * @return string
-     */
     public function getTargets(): string
     {
         return static::CLASS_CONSTRAINT;

@@ -49,12 +49,6 @@ class ProductTable extends AbstractProductTable
      */
     protected $productAbstractQuery;
 
-    /**
-     * @param \Orm\Zed\Product\Persistence\SpyProductAbstractQuery $productAbstractQuery
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToLocaleFacadeInterface $localeFacade
-     * @param \Spryker\Zed\ProductRelationGui\Dependency\Service\ProductRelationGuiToUtilEncodingServiceInterface $utilEncodingService
-     * @param int|null $idProductRelation
-     */
     public function __construct(
         SpyProductAbstractQuery $productAbstractQuery,
         ProductRelationGuiToLocaleFacadeInterface $localeFacade,
@@ -69,11 +63,6 @@ class ProductTable extends AbstractProductTable
         $this->idProductRelation = $idProductRelation;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return \Spryker\Zed\Gui\Communication\Table\TableConfiguration
-     */
     protected function configure(TableConfiguration $config): TableConfiguration
     {
         $this->setTableUrl($config);
@@ -86,11 +75,6 @@ class ProductTable extends AbstractProductTable
         return $config;
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setHeaders(TableConfiguration $config): void
     {
         $header = [
@@ -106,11 +90,6 @@ class ProductTable extends AbstractProductTable
         $config->setHeader($header);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setRawColumns(TableConfiguration $config): void
     {
         $config->setRawColumns([
@@ -119,11 +98,6 @@ class ProductTable extends AbstractProductTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setSortableFields(TableConfiguration $config): void
     {
         $config->setSortable([
@@ -133,11 +107,6 @@ class ProductTable extends AbstractProductTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setSearchableFields(TableConfiguration $config): void
     {
         $config->setSearchable([
@@ -146,11 +115,6 @@ class ProductTable extends AbstractProductTable
         ]);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setDefaultSortField(TableConfiguration $config): void
     {
         $config->setDefaultSortField(
@@ -159,11 +123,6 @@ class ProductTable extends AbstractProductTable
         );
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return void
-     */
     protected function setTableUrl(TableConfiguration $config): void
     {
         $url = Url::generate('table', [
@@ -173,11 +132,6 @@ class ProductTable extends AbstractProductTable
         $config->setUrl($url);
     }
 
-    /**
-     * @param \Spryker\Zed\Gui\Communication\Table\TableConfiguration $config
-     *
-     * @return array
-     */
     protected function prepareData(TableConfiguration $config): array
     {
         /** @var \Propel\Runtime\ActiveQuery\ModelCriteria $query */
@@ -193,9 +147,6 @@ class ProductTable extends AbstractProductTable
         return $results;
     }
 
-    /**
-     * @return \Propel\Runtime\ActiveQuery\Criteria
-     */
     protected function prepareQuery(): Criteria
     {
         $localeTransfer = $this->localeFacade->getCurrentLocale();
@@ -230,12 +181,6 @@ class ProductTable extends AbstractProductTable
             ->addGroupByColumn(SpyProductAbstractLocalizedAttributesTableMap::COL_NAME);
     }
 
-    /**
-     * @param int $idLocale
-     * @param int $idProductRelation
-     *
-     * @return \Orm\Zed\Product\Persistence\SpyProductAbstractQuery
-     */
     protected function queryProductsByIdLocaleAndIdRelation(int $idLocale, int $idProductRelation): SpyProductAbstractQuery
     {
         return $this->queryProductsByFkLocale($idLocale)
@@ -244,11 +189,6 @@ class ProductTable extends AbstractProductTable
             ->endUse();
     }
 
-    /**
-     * @param array $item
-     *
-     * @return array
-     */
     protected function mapResults(array $item): array
     {
         $results = [
@@ -266,11 +206,6 @@ class ProductTable extends AbstractProductTable
         return $results;
     }
 
-    /**
-     * @param array $item
-     *
-     * @return string
-     */
     protected function buildSelectButton(array $item): string
     {
         return $this->generateViewButton(
