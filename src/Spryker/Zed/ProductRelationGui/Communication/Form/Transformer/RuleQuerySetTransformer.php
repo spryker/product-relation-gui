@@ -31,7 +31,7 @@ class RuleQuerySetTransformer implements DataTransformerInterface
      *
      * @return string|null
      */
-    public function transform($value)
+    public function transform($value): mixed
     {
         if (!$value || count($value->getRules()) === 0) {
             return null;
@@ -45,7 +45,7 @@ class RuleQuerySetTransformer implements DataTransformerInterface
      *
      * @return \Generated\Shared\Transfer\PropelQueryBuilderRuleSetTransfer
      */
-    public function reverseTransform($value)
+    public function reverseTransform($value): mixed
     {
         $querySetData = $this->utilEncodingService->decodeJson($value, true);
 
