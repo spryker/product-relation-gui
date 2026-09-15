@@ -7,6 +7,8 @@
 
 require('@spryker/jquery-query-builder');
 
+var tableAccess = require('ZedGuiModules/libs/table/table-access');
+
 var SqlQueryBuilder = function (options) {
     this.idProductRelation = null;
     this.builder = null;
@@ -15,6 +17,7 @@ var SqlQueryBuilder = function (options) {
     this.productRelationQuerySet = null;
     this.productRelationFormSubmitBtn = null;
     this.ruleQueryTable = null;
+    this.ruleQueryTableHandle = null;
     this.tabsContainer = null;
     this.flashMessages = null;
 
@@ -22,6 +25,10 @@ var SqlQueryBuilder = function (options) {
 
     var filterConfigurationUrl = this.filtersUrl + this.idProductRelation;
     var self = this;
+
+    tableAccess.requestTable(this.ruleQueryTable[0], function (handle) {
+        self.ruleQueryTableHandle = handle;
+    });
 
     $.get(filterConfigurationUrl).done(function (filters) {
         self.builder = self.queryBuilderElement.queryBuilder(self.getQueryBuilderOptions(filters));
@@ -107,10 +114,7 @@ SqlQueryBuilder.prototype.watchForQueryRuleUpdates = function () {
 };
 
 SqlQueryBuilder.prototype.updateTable = function () {
-    var table = this.initializeRuleProductsTable();
-    var json = JSON.stringify(this.getQuerySet());
-
-    this.reloadQueryBuilderTable(table, json);
+    this.reloadQueryBuilderTable(JSON.stringify(this.getQuerySet()));
 };
 
 SqlQueryBuilder.prototype.updateQuerySetField = function () {
@@ -119,22 +123,28 @@ SqlQueryBuilder.prototype.updateQuerySetField = function () {
     this.productRelationQuerySet.val(json);
 };
 
-SqlQueryBuilder.prototype.initializeRuleProductsTable = function () {
-    return this.ruleQueryTable.DataTable();
+/**
+ * @param {string} json - Rules of the query builder, as the table expects them.
+ *
+ * @returns {string} URL the rows of the table are loaded from.
+ */
+SqlQueryBuilder.prototype.getQueryBuilderTableUrl = function (json) {
+    var url = new URL(this.ruleQueryTable[0].dataset.ajax, window.location.origin);
+
+    url.searchParams.set('data', json);
+
+    return url.pathname + url.search;
 };
 
-SqlQueryBuilder.prototype.replaceUrlParam = function (parameter, value, url) {
-    var regex = new RegExp('([?;&])' + parameter + '[^&;]*[;&]?');
-    var query = url.replace(regex, '$1').replace(/&$/, '');
+/**
+ * @param {string} json - Rules of the query builder, as the table expects them.
+ */
+SqlQueryBuilder.prototype.reloadQueryBuilderTable = function (json) {
+    if (!this.ruleQueryTableHandle) {
+        return;
+    }
 
-    return (query.length > 2 ? query + '&' : '?') + (value ? parameter + '=' + value : '');
-};
-
-SqlQueryBuilder.prototype.reloadQueryBuilderTable = function (table, json) {
-    var url = table.ajax.url();
-    var newUrl = this.replaceUrlParam('data', json, url);
-
-    table.ajax.url(newUrl).load();
+    this.ruleQueryTableHandle.reload(this.getQueryBuilderTableUrl(json));
 };
 
 SqlQueryBuilder.prototype.toggleSubmitButton = function (isDisabled) {

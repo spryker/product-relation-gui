@@ -20,20 +20,11 @@ var ProductSelector = function ProductSelector(options) {
 
 ProductSelector.prototype.initialiseProductTable = function () {
     var self = this;
-    this.productTable.dataTable({
-        destroy: true,
-        scrollX: 'auto',
-        autoWidth: false,
-        fnDrawCallback: function (settings) {
-            self.onTableDraw(settings);
-        },
-    });
-};
 
-ProductSelector.prototype.onTableDraw = function (settings) {
-    var self = this;
-    $('a[data-select-product]').each(function (index, element) {
-        self.addClickEventToCheckbox($(element));
+    this.productTable.on('click', 'a[data-select-product]', function (event) {
+        event.preventDefault();
+
+        self.selectProduct($(this).data('select-product'));
     });
 };
 
@@ -43,18 +34,14 @@ ProductSelector.prototype.findSelectedProduct = function () {
         return;
     }
 
-    var self = this;
-    $.get(this.selectProductUrl + idSelectedProduct).done(function (selectedProduct) {
-        self.updateSelectedProduct(selectedProduct);
-    });
+    this.selectProduct(idSelectedProduct);
 };
 
-ProductSelector.prototype.addClickEventToCheckbox = function (element) {
+ProductSelector.prototype.selectProduct = function (idProductAbstract) {
     var self = this;
-    $(element).on('click', function (event) {
-        $.get(self.selectProductUrl + $(event.target).data('select-product')).done(function (selectedProduct) {
-            self.updateSelectedProduct(selectedProduct);
-        });
+
+    $.get(this.selectProductUrl + idProductAbstract).done(function (selectedProduct) {
+        self.updateSelectedProduct(selectedProduct);
     });
 };
 
