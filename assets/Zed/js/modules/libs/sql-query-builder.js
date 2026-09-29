@@ -69,8 +69,6 @@ SqlQueryBuilder.prototype.onFormSubmit = function () {
             self.toggleSubmitButton(true);
             self.toggleErrorState(true);
             window.scrollTo(0, 0);
-
-            return;
         }
     });
 };
