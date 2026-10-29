@@ -302,7 +302,7 @@ class ProductRelationTable extends AbstractTable
     protected function buildActiveLabel(SpyProductRelation $productRelationEntity): string
     {
         if (!$productRelationEntity->getIsActive()) {
-            return $this->generateLabel('Inactive', 'label-danger');
+            return $this->generateLabel('Inactive', 'badge-outline-dark');
         }
 
         return $this->generateLabel('Active', 'label-primary');
