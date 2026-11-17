@@ -32,6 +32,8 @@ use Spryker\Zed\ProductRelationGui\Communication\Table\ProductRelationTable;
 use Spryker\Zed\ProductRelationGui\Communication\Table\ProductRuleTable;
 use Spryker\Zed\ProductRelationGui\Communication\Table\ProductTable;
 use Spryker\Zed\ProductRelationGui\Communication\Tabs\ProductRelationTabs;
+use Spryker\Zed\ProductRelationGui\Communication\Validator\RuleQuerySetValidator;
+use Spryker\Zed\ProductRelationGui\Communication\Validator\RuleQuerySetValidatorInterface;
 use Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToLocaleFacadeInterface;
 use Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductAttributeFacadeInterface;
 use Spryker\Zed\ProductRelationGui\Dependency\Facade\ProductRelationGuiToProductFacadeInterface;
@@ -53,7 +55,10 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
      */
     public function createRuleSetTransformer(): DataTransformerInterface
     {
-        return new RuleQuerySetTransformer($this->getUtilEncodingService());
+        return new RuleQuerySetTransformer(
+            $this->getUtilEncodingService(),
+            $this->createRuleQuerySetValidator(),
+        );
     }
 
     public function createProductRelationFormTypeDataProvider(): ProductRelationTypeDataProvider
@@ -157,6 +162,11 @@ class ProductRelationGuiCommunicationFactory extends AbstractCommunicationFactor
     public function createFilterProvider(): FilterProviderInterface
     {
         return new FilterProvider($this->getProductAttributeFacade());
+    }
+
+    public function createRuleQuerySetValidator(): RuleQuerySetValidatorInterface
+    {
+        return new RuleQuerySetValidator($this->createFilterProvider());
     }
 
     public function createRuleQueryCreator(): RuleQueryCreatorInterface

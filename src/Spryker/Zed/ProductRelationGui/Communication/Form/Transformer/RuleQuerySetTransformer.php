@@ -8,8 +8,10 @@
 namespace Spryker\Zed\ProductRelationGui\Communication\Form\Transformer;
 
 use Generated\Shared\Transfer\PropelQueryBuilderRuleSetTransfer;
+use Spryker\Zed\ProductRelationGui\Communication\Validator\RuleQuerySetValidatorInterface;
 use Spryker\Zed\ProductRelationGui\Dependency\Service\ProductRelationGuiToUtilEncodingServiceInterface;
 use Symfony\Component\Form\DataTransformerInterface;
+use Symfony\Component\Form\Exception\TransformationFailedException;
 
 /**
  * @implements \Symfony\Component\Form\DataTransformerInterface<\Generated\Shared\Transfer\PropelQueryBuilderRuleSetTransfer|null, string|null>
@@ -21,8 +23,10 @@ class RuleQuerySetTransformer implements DataTransformerInterface
      */
     protected $utilEncodingService;
 
-    public function __construct(ProductRelationGuiToUtilEncodingServiceInterface $utilEncodingService)
-    {
+    public function __construct(
+        ProductRelationGuiToUtilEncodingServiceInterface $utilEncodingService,
+        protected RuleQuerySetValidatorInterface $ruleQuerySetValidator
+    ) {
         $this->utilEncodingService = $utilEncodingService;
     }
 
@@ -43,14 +47,23 @@ class RuleQuerySetTransformer implements DataTransformerInterface
     /**
      * @param string|null $value
      *
+     * @throws \Symfony\Component\Form\Exception\TransformationFailedException
+     *
      * @return \Generated\Shared\Transfer\PropelQueryBuilderRuleSetTransfer
      */
     public function reverseTransform($value): mixed
     {
         $querySetData = $this->utilEncodingService->decodeJson($value, true);
 
+        if (!is_array($querySetData)) {
+            throw new TransformationFailedException('Invalid rule query set.');
+        }
         $querySetTransfer = new PropelQueryBuilderRuleSetTransfer();
         $querySetTransfer->fromArray($querySetData, true);
+
+        if (!$this->ruleQuerySetValidator->isValid($querySetTransfer)) {
+            throw new TransformationFailedException('Invalid rule query set.');
+        }
 
         return $querySetTransfer;
     }

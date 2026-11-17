@@ -9,6 +9,7 @@ namespace SprykerTest\Zed\ProductRelationGui;
 
 use Codeception\Actor;
 use Generated\Shared\Transfer\LocaleTransfer;
+use Orm\Zed\ProductAttribute\Persistence\SpyProductManagementAttributeValue;
 
 /**
  * Inherited Methods
@@ -30,8 +31,22 @@ class ProductRelationGuiCommunicationTester extends Actor
 {
     use _generated\ProductRelationGuiCommunicationTesterActions;
 
+    protected const string PRODUCT_MANAGEMENT_ATTRIBUTE_VALUE = 'test-value';
+
     public function getCurrentLocale(): LocaleTransfer
     {
         return $this->getLocator()->locale()->facade()->getCurrentLocale();
+    }
+
+    public function haveProductManagementAttributeKeyWithValue(): string
+    {
+        $productManagementAttributeEntity = $this->haveProductManagementAttributeEntity();
+
+        (new SpyProductManagementAttributeValue())
+            ->setFkProductManagementAttribute($productManagementAttributeEntity->getIdProductManagementAttribute())
+            ->setValue(static::PRODUCT_MANAGEMENT_ATTRIBUTE_VALUE)
+            ->save();
+
+        return $productManagementAttributeEntity->getSpyProductAttributeKey()->getKey();
     }
 }
